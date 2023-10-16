@@ -21,6 +21,7 @@ class PostDetailResource extends JsonResource
             'content' => $this->content,
             'category' => $this->category->name,
             'category_id' => $this->category->id,
+            'cover_img' => $this->cover_img ?? config('default.post_cover_img'),
             'tags' => $this->tags->pluck('name'),
             'tags_id' => $this->tags->pluck('id'),
             'created_at' => $this->created_at->format('d-m-Y h:i:s'),

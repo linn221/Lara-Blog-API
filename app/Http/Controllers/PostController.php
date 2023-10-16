@@ -32,7 +32,8 @@ class PostController extends Controller
             'title',
             'slug',
             'content',
-            'category_id'
+            'category_id',
+            'cover_img'
         ]));
         $post->tags()->sync($request->tags);
         return new PostDetailResource($post);
@@ -58,7 +59,8 @@ class PostController extends Controller
             'title',
             'slug',
             'content',
-            'category_id'
+            'category_id',
+            'cover_img'
         ]));
         $post->tags()->sync($request->tags);
 

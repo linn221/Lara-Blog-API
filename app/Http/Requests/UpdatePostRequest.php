@@ -25,6 +25,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'required|min:4|max:255',
             'slug' => 'required|min:4|max:40',
             'content' => 'required',
+            'cover_img' => 'required|min:10|max:255',
             'category_id' => 'required|exists:categories,id'
             //
         ];

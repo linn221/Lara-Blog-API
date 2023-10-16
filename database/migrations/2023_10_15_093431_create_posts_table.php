@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
+            $table->text('cover_img')->nullable();
             $table->foreignIdFor(Category::class);
             $table->softDeletes();
             $table->timestamps();
