@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryDetailResource;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -13,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return $categories;
+        $categories = Category::withCount('posts')->get();
+        return CategoryResource::collection($categories);
         //
     }
 
@@ -26,7 +28,7 @@ class CategoryController extends Controller
         $category = Category::create([
             'name' => $request->name
         ]);
-        return $category;
+        return new CategoryDetailResource($category);
         //
     }
 
@@ -35,7 +37,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryDetailResource($category);
         //
     }
 
@@ -47,7 +49,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name
         ]);
-        return $category;
+        return new CategoryDetailResource($category);
         //
     }
 
