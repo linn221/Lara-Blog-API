@@ -25,7 +25,9 @@ class StorePostRequest extends FormRequest
             'title' => 'required|min:4|max:255',
             'slug' => 'required|min:4|max:40',
             'content' => 'required',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'required|exists:categories,id',
+            'tags' => 'required|array',
+            'tags.*' => 'numeric|exists:tags,id'
             //
         ];
     }
