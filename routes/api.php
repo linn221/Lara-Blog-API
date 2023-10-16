@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::apiResource('category', CategoryController::class);
     Route::apiResource('post', PostController::class);
+    Route::apiResource('tag', TagController::class);
 });
 
 Route::middleware('guest')->group(function() {
