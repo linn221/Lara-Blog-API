@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 function get_public_url(string $uri) : string
 {
@@ -14,4 +15,9 @@ function get_file_size(int $byte_size) : string
     $kilo = 1000;
     $kb = $byte_size / $kilo;
     return "$kb kB";
+}
+
+function generate_slug(string $title) : string
+{
+    return Str::slug(Str::limit($title, 50));
 }

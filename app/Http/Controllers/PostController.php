@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostDetailResource;
 use App\Http\Resources\PostResource;
-use App\Http\Resources\PostResourceCollection;
 use App\Models\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -28,6 +27,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        $request->mergeIfMissing([
+            'slug' => generate_slug($request->title)
+        ]);
+
         $post = Post::create($request->only([
             'title',
             'slug',
