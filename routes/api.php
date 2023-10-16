@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
@@ -25,9 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::apiResource('category', CategoryController::class);
-    Route::apiResource('post', PostController::class);
-    Route::apiResource('tag', TagController::class);
+    Route::apiResource('/category', CategoryController::class);
+    Route::apiResource('/post', PostController::class);
+    Route::apiResource('/tag', TagController::class);
+    Route::apiResource('/image', ImageController::class)->only(['index', 'store', 'destroy']);
 });
 
 Route::middleware('guest')->group(function() {
