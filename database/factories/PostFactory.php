@@ -16,8 +16,17 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            //
-        ];
+        $title = fake()->text();
+        $slug = generate_slug($title);
+        $content = fake()->sentence(rand(1, 10));
+        $category_id = rand(1, count(config('seeding.categories')));
+
+        // return [
+        //     'title' => $title,
+        //     'slug' => $slug,
+        //     'content' => $content,
+        //     'category_id' => $category_id,
+        // ];
+        return compact('title', 'slug', 'content', 'category_id');
     }
 }

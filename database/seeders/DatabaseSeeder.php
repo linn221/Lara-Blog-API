@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,19 +23,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
         ]);
 
-        // create tags & categories for testing convinence
-        $categories = config('seeding.categories');
-        $tags = config('seeding.tags');
-        foreach($categories as $category) {
-            Category::factory()->create([
-                'name' => $category
-            ]);
-        }
-
-        foreach($tags as $tag) {
-            Tag::factory()->create([
-                'name' => $tag
-            ]);
-        }
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+            PostSeeder::class
+        ]);
+        $token = User::find(1)->createToken('first')->plainTextToken;
+        echo "\n$token\n";
     }
 }
