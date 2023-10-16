@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostDetailResource;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\PostResourceCollection;
 use App\Models\Post;
@@ -16,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return new PostResourceCollection($posts);
+        return PostResource::collection($posts);
         //
     }
 
@@ -33,7 +35,7 @@ class PostController extends Controller
             'category_id'
         ]));
         $post->tags()->sync($request->tags);
-        return $post;
+        return new PostDetailResource($post);
         //
     }
 
@@ -42,7 +44,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return new PostDetailResource($post);
         //
     }
 
@@ -60,7 +62,7 @@ class PostController extends Controller
         ]));
         $post->tags()->sync($request->tags);
 
-        return $post;
+        return new PostDetailResource($post);
         //
     }
 
