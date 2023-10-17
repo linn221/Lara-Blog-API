@@ -1,66 +1,535 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Authentication
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**All endpoints require authentication using a bearer token. The token must be included in the request headers with the key Authorization.**
 
-## About Laravel
+```http
+Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
+```
+<br>
+<br>
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [1. Public](#1-public)
+   * [1.1. fetch posts](#11-fetch-posts)
+   * [1.2. read post](#12-read-post)
+   * [1.3. fetch tags](#13-fetch-tags)
+   * [1.4. show tag](#14-show-tag)
+   * [1.5. fetch categories](#15-fetch-categories)
+   * [1.6. show category](#16-show-category)
+- [2. Dashboard](#2-dashboard)
+   * [2.1. User](#21-user)
+      + [2.1.1. logout](#211-logout)
+      + [2.1.2. change password](#212-change-password)
+      + [2.1.3. change password again](#213-change-password-again)
+      + [2.1.4. user](#214-user)
+      + [2.1.5. update profile](#215-update-profile)
+   * [2.2. Categories](#22-categories)
+      + [2.2.1. list categories](#221-list-categories)
+      + [2.2.2. create category](#222-create-category)
+      + [2.2.3. update category](#223-update-category)
+      + [2.2.4. show category](#224-show-category)
+      + [2.2.5. delete category](#225-delete-category)
+   * [2.3. Tags](#23-tags)
+      + [2.3.1. create tag](#231-create-tag)
+      + [2.3.2. update tag](#232-update-tag)
+      + [2.3.3. get tag](#233-get-tag)
+      + [2.3.4. list tags](#234-list-tags)
+      + [2.3.5. delete tag](#235-delete-tag)
+   * [2.4. Posts](#24-posts)
+      + [2.4.1. Soft delete related](#241-soft-delete-related)
+         - [2.4.1.1. show trash](#2411-show-trash)
+         - [2.4.1.2. empty trash](#2412-empty-trash)
+         - [2.4.1.3. recycle trash](#2413-recycle-trash)
+         - [2.4.1.4. restore post](#2414-restore-post)
+         - [2.4.1.5. force delete post](#2415-force-delete-post)
+      + [2.4.2. create post](#242-create-post)
+      + [2.4.3. update posts](#243-update-posts)
+      + [2.4.4. get post](#244-get-post)
+      + [2.4.5. list posts](#245-list-posts)
+      + [2.4.6. delete post](#246-delete-post)
+      + [2.4.7. bulk delete](#247-bulk-delete)
+   * [2.5. media](#25-media)
+      + [2.5.1. upload image](#251-upload-image)
+      + [2.5.2. index image](#252-index-image)
+      + [2.5.3. delete image](#253-delete-image)
+      + [2.5.4. multiple upload](#254-multiple-upload)
+      + [2.5.5. multiple delete](#255-multiple-delete)
+- [3. log in](#3-log-in)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- TOC end -->
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<!-- API Documentation generated with https://github.com/linn221/generate-md-postman.json -->
+<!-- TOC --><a name="1-public"></a>
+# 1. Public
+<!-- TOC --><a name="11-fetch-posts"></a>
+## 1.1. fetch posts
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**GET**
+```http
+{{public}}/posts?cat_id=1&order=updated_at&kw=lore
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<!-- TOC --><a name="12-read-post"></a>
+## 1.2. read post
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+**GET**
+```http
+{{public}}/post/hello-world
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<!-- TOC --><a name="13-fetch-tags"></a>
+## 1.3. fetch tags
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+**GET**
+```http
+{{public}}/tags
+```
 
-## Contributing
+<!-- TOC --><a name="14-show-tag"></a>
+## 1.4. show tag
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+**GET**
+```http
+{{public}}/tag/flutter
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<!-- TOC --><a name="15-fetch-categories"></a>
+## 1.5. fetch categories
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**GET**
+```http
+{{public}}/categories
+```
 
-## License
+<!-- TOC --><a name="16-show-category"></a>
+## 1.6. show category
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+**GET**
+```http
+{{public}}/category/frontend
+```
+
+----------------------------
+<!-- TOC --><a name="2-dashboard"></a>
+# 2. Dashboard
+<!-- TOC --><a name="21-user"></a>
+## 2.1. User
+<!-- TOC --><a name="211-logout"></a>
+### 2.1.1. logout
+
+
+**POST**
+```http
+{{url}}/logout
+```
+
+<!-- TOC --><a name="212-change-password"></a>
+### 2.1.2. change password
+
+
+**POST**
+```http
+{{url}}/change-password
+```
+[*formdata*]
+
+Key          | Type | Value     
+------------ | ---- | ----------
+old_password | text | password  
+new_password | text | helloworld
+
+
+<!-- TOC --><a name="213-change-password-again"></a>
+### 2.1.3. change password again
+
+
+**POST**
+```http
+{{url}}/change-password
+```
+[*formdata*]
+
+Key          | Type | Value     
+------------ | ---- | ----------
+new_password | text | password  
+old_password | text | helloworld
+
+
+<!-- TOC --><a name="214-user"></a>
+### 2.1.4. user
+
+
+**GET**
+```http
+{{url}}/user
+```
+
+<!-- TOC --><a name="215-update-profile"></a>
+### 2.1.5. update profile
+
+
+**PATCH**
+```http
+{{url}}/user
+```
+[*urlencoded*]
+
+Key         | Type | Value                
+----------- | ---- | ---------------------
+name        | text | Linn                 
+email       | text | linncoffeee@gmail.com
+information | text | i love coffee        
+
+
+----------------------------
+<!-- TOC --><a name="22-categories"></a>
+## 2.2. Categories
+<!-- TOC --><a name="221-list-categories"></a>
+### 2.2.1. list categories
+
+
+**GET**
+```http
+{{url}}/category
+```
+
+<!-- TOC --><a name="222-create-category"></a>
+### 2.2.2. create category
+
+
+**POST**
+```http
+{{url}}/category
+```
+[*formdata*]
+
+Key  | Type | Value  
+---- | ---- | -------
+name | text | laravel
+
+
+<!-- TOC --><a name="223-update-category"></a>
+### 2.2.3. update category
+
+
+**PUT**
+```http
+{{url}}/category/3
+```
+[*urlencoded*]
+
+Key  | Type | Value        
+---- | ---- | -------------
+name | text | ruby on rails
+
+
+<!-- TOC --><a name="224-show-category"></a>
+### 2.2.4. show category
+
+
+**GET**
+```http
+{{url}}/category/3
+```
+
+<!-- TOC --><a name="225-delete-category"></a>
+### 2.2.5. delete category
+
+
+**DELETE**
+```http
+{{url}}/category/1
+```
+
+----------------------------
+<!-- TOC --><a name="23-tags"></a>
+## 2.3. Tags
+<!-- TOC --><a name="231-create-tag"></a>
+### 2.3.1. create tag
+
+
+**POST**
+```http
+{{url}}/tag
+```
+[*formdata*]
+
+Key  | Type | Value    
+---- | ---- | ---------
+name | text | eloquentt
+
+
+<!-- TOC --><a name="232-update-tag"></a>
+### 2.3.2. update tag
+
+
+**PUT**
+```http
+{{url}}/tag/3
+```
+[*urlencoded*]
+
+Key  | Type | Value     
+---- | ---- | ----------
+name | text | collection
+
+
+<!-- TOC --><a name="233-get-tag"></a>
+### 2.3.3. get tag
+
+
+**GET**
+```http
+{{url}}/tag/1
+```
+
+<!-- TOC --><a name="234-list-tags"></a>
+### 2.3.4. list tags
+
+
+**GET**
+```http
+{{url}}/tag
+```
+
+<!-- TOC --><a name="235-delete-tag"></a>
+### 2.3.5. delete tag
+
+
+**DELETE**
+```http
+{{url}}/tag/1
+```
+
+----------------------------
+<!-- TOC --><a name="24-posts"></a>
+## 2.4. Posts
+<!-- TOC --><a name="241-soft-delete-related"></a>
+### 2.4.1. Soft delete related
+<!-- TOC --><a name="2411-show-trash"></a>
+#### 2.4.1.1. show trash
+
+
+**GET**
+```http
+{{url}}/trash
+```
+
+<!-- TOC --><a name="2412-empty-trash"></a>
+#### 2.4.1.2. empty trash
+
+
+**POST**
+```http
+{{url}}/trash/empty-all
+```
+
+<!-- TOC --><a name="2413-recycle-trash"></a>
+#### 2.4.1.3. recycle trash
+
+
+**POST**
+```http
+{{url}}/trash/recycle-all
+```
+
+<!-- TOC --><a name="2414-restore-post"></a>
+#### 2.4.1.4. restore post
+
+
+**POST**
+```http
+{{url}}/trash/recycle/14
+```
+
+<!-- TOC --><a name="2415-force-delete-post"></a>
+#### 2.4.1.5. force delete post
+
+
+**POST**
+```http
+{{url}}/trash/post/empty/14
+```
+
+----------------------------
+<!-- TOC --><a name="242-create-post"></a>
+### 2.4.2. create post
+
+
+**POST**
+```http
+{{url}}/post
+```
+[*formdata*]
+
+Key         | Type | Value                                     
+----------- | ---- | ------------------------------------------
+title       | text | how to save a life                        
+content     | text | to be or not to be                        
+slug        | text | hello world                               
+category_id | text | 3                                         
+tags[]      | text | 2                                         
+tags[]      | text | 3                                         
+cover_img   | text | im the url string of the actual image file
+
+
+<!-- TOC --><a name="243-update-posts"></a>
+### 2.4.3. update posts
+
+
+**PUT**
+```http
+{{url}}/post/1
+```
+[*urlencoded*]
+
+Key         | Type | Value                                                                                                                                                                            
+----------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+title       | text | hello world                                                                                                                                                                      
+content     | text | to be or not to belkdsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+slug        | text | hello world                                                                                                                                                                      
+category_id | text | 2                                                                                                                                                                                
+tags[]      | text | 2                                                                                                                                                                                
+tags[]      | text | 3                                                                                                                                                                                
+cover_img   | text | im the updated one, NOT optional                                                                                                                                                 
+
+
+<!-- TOC --><a name="244-get-post"></a>
+### 2.4.4. get post
+
+
+**GET**
+```http
+{{url}}/post/10
+```
+
+<!-- TOC --><a name="245-list-posts"></a>
+### 2.4.5. list posts
+
+
+**GET**
+```http
+{{url}}/post?kw=lore
+```
+
+<!-- TOC --><a name="246-delete-post"></a>
+### 2.4.6. delete post
+
+
+**DELETE**
+```http
+{{url}}/post/14
+```
+
+<!-- TOC --><a name="247-bulk-delete"></a>
+### 2.4.7. bulk delete
+
+
+**POST**
+```http
+{{url}}/post/bulk-delete
+```
+[*formdata*]
+
+Key   | Type | Value
+----- | ---- | -----
+ids[] | text | 1    
+ids[] | text | 4    
+
+
+----------------------------
+<!-- TOC --><a name="25-media"></a>
+## 2.5. media
+<!-- TOC --><a name="251-upload-image"></a>
+### 2.5.1. upload image
+
+
+**POST**
+```http
+{{url}}/image
+```
+[*formdata*]
+
+Key     | Type | Value     
+------- | ---- | ----------
+image   | file |           
+caption | text | i am a boy
+
+
+<!-- TOC --><a name="252-index-image"></a>
+### 2.5.2. index image
+
+
+**GET**
+```http
+{{url}}/image
+```
+
+<!-- TOC --><a name="253-delete-image"></a>
+### 2.5.3. delete image
+
+
+**DELETE**
+```http
+{{url}}/image/4
+```
+
+<!-- TOC --><a name="254-multiple-upload"></a>
+### 2.5.4. multiple upload
+
+Note:
+upload mutliple images, no caption support\
+\
+**POST**
+```http
+{{url}}/image/bulk-upload
+```
+[*formdata*]
+
+Key     | Type | Value
+------- | ---- | -----
+image[] | file |      
+
+
+<!-- TOC --><a name="255-multiple-delete"></a>
+### 2.5.5. multiple delete
+
+
+**POST**
+```http
+{{url}}/image/bulk-delete
+```
+[*formdata*]
+
+Key   | Type | Value
+----- | ---- | -----
+ids[] | text | 7    
+ids[] | text | 8    
+
+
+----------------------------
+<!-- TOC --><a name="3-log-in"></a>
+# 3. log in
+
+
+**POST**
+```http
+{{url}}/login
+```
+[*formdata*]
+
+Key      | Type | Value            
+-------- | ---- | -----------------
+email    | text | admin@example.com
+password | text | helloworld       
+password | text | password         
+
+
+----------------------------
+
