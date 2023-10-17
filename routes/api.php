@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostDeleteController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,11 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->group(function () {
+// dashboard
+Route::middleware('auth:sanctum')->prefix('/dashboard')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // user setting
-    Route::controller(UserController::class)->group(function() {
+    Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'showProfile');
         Route::patch('/user', 'updateProfile');
         Route::post('/change-password', 'changePassword');
@@ -55,6 +57,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/image', ImageController::class)->only(['index', 'store', 'destroy']);
 });
 
+// open to public
 Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
+});
+
+// Route::get('/index', [PublicController::class, 'index']);
+Route::controller(PostController::class)->group(function () {
+    Route::get('/posts', 'index');
+    Route::get('/post/{post:slug}', 'show');
+});
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/categories', 'index');
+    Route::get('/category/{category:name}', 'show');
+});
+
+Route::controller(TagController::class)->group(function () {
+    Route::get('/tags', 'index');
+    Route::get('/tag/{tag:name}', 'show');
 });

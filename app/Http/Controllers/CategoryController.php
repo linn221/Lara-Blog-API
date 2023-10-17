@@ -8,6 +8,8 @@ use App\Http\Resources\CategoryDetailResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\PostResource;
 use App\Models\Category;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -16,7 +18,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::withCount('posts')->get();
+        // $categories = Category::withCount('posts')->get();
+        $categories = Cache::remember('categories', Carbon::now()->secondsUntilEndOfDay(), function() {
+            return Category::withCount('posts')->get();
+        });
         return CategoryResource::collection($categories);
         //
     }
@@ -38,8 +43,12 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $recent_posts = $category->posts()
-        ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
+        // $recent_posts = $category->posts()
+        // ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
+        $recent_posts = Cache::remember("categories.$category->id", Carbon::now()->secondsUntilEndOfDay(), function() use ($category) {
+            return $category->posts()
+            ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
+        });
         return (new CategoryDetailResource($category))->additional([
             'recent_posts' => PostResource::collection($recent_posts),
         ]);
@@ -51,6 +60,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
+        Cache::forget("categories.$category->id");
         $category->update([
             'name' => $request->name
         ]);
@@ -63,6 +73,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Cache::forget("categories.$category->id");
         $category->delete();
         return response()->noContent();
         //

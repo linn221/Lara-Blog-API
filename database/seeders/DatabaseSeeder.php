@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,12 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             PostSeeder::class
         ]);
+
+        Post::find(1)->update([
+            'title' => 'welcome post',
+            'slug' => 'hello-world'
+        ]);
+
         $token = User::find(1)->createToken('first')->plainTextToken;
         echo "\n$token\n";
     }

@@ -1,0 +1,1231 @@
+{
+	"info": {
+		"_postman_id": "b8b66072-7a52-4686-8f90-b2d286349f2b",
+		"name": "Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28986898"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "fetch posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{public}}/posts?cat_id=1&order=updated_at&kw=lore",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "cat_id",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "updated_at"
+								},
+								{
+									"key": "kw",
+									"value": "lore"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{public}}/post/hello-world",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"post",
+								"hello-world"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{public}}/tags",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show tag",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{public}}/tag/flutter",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"tag",
+								"flutter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{public}}/categories",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{public}}/category/frontend",
+							"host": [
+								"{{public}}"
+							],
+							"path": [
+								"category",
+								"frontend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "old_password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "new_password",
+											"value": "helloworld",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password again",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "new_password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "old_password",
+											"value": "helloworld",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update profile",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Linn",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "linncoffeee@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "information",
+											"value": "i love coffee",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "list categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create category",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "laravel",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update category",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "ruby on rails",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/category/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"category",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show category",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/category/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"category",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete category",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/category/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tags",
+					"item": [
+						{
+							"name": "create tag",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "eloquentt",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/tag",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tag"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update tag",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "collection",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/tag/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tag",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get tag",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/tag/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tag",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list tags",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/tag",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tag"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete tag",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/tag/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tag",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Posts",
+					"item": [
+						{
+							"name": "Soft delete related",
+							"item": [
+								{
+									"name": "show trash",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/trash",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"trash"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "empty trash",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/trash/empty-all",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"trash",
+												"empty-all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "recycle trash",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/trash/recycle-all",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"trash",
+												"recycle-all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "restore post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/trash/recycle/14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"trash",
+												"recycle",
+												"14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "force delete post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/trash/post/empty/14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"trash",
+												"post",
+												"empty",
+												"14"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "create post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "how to save a life",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "to be or not to be",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "hello world",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "category_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "tags[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tags[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "cover_img",
+											"value": "im the url string of the actual image file",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/post",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update posts",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "hello world",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "to be or not to belkdsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "hello world",
+											"type": "text"
+										},
+										{
+											"key": "category_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tags[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tags[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "cover_img",
+											"value": "im the updated one, NOT optional",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/post/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get post",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/post/10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list posts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/post?kw=lore",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post"
+									],
+									"query": [
+										{
+											"key": "kw",
+											"value": "lore"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete post",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/post/14",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bulk delete",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ids[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "ids[]",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/post/bulk-delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"post",
+										"bulk-delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "media",
+					"item": [
+						{
+							"name": "upload image",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "caption",
+											"value": "i am a boy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/image",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"image"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "index image",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/image",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"image"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete image",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/image/4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"image",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multiple upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image[]",
+											"type": "file",
+											"src": [
+												"/home/linn/Pictures/Screenshot_2023-10-10_18-50-56.png",
+												"/home/linn/Pictures/Screenshot_2023-10-06_21-33-40.png"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/image/bulk-upload",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"image",
+										"bulk-upload"
+									]
+								},
+								"description": "upload mutliple images, no caption support"
+							},
+							"response": []
+						},
+						{
+							"name": "multiple delete",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "ids[]",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "ids[]",
+											"value": "8",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/image/bulk-delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"image",
+										"bulk-delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "log in",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "helloworld",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
