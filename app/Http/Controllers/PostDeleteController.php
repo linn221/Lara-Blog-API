@@ -50,5 +50,16 @@ class PostDeleteController extends Controller
         $post->delete();
         return response()->noContent();
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'numeric'
+
+        ]);
+        Post::destroy($request->ids);
+        return response()->noContent();
+    }
     //
 }

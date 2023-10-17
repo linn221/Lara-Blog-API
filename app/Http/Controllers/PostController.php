@@ -28,7 +28,7 @@ class PostController extends Controller
             ->orWhere('content', 'like', "%$keyword%");
         })
         // sorting
-        ->when(request()->order && in_array(request()->order, ['title', 'created_at', 'updated_at', 'category_id']), function($query) {
+        ->when(request()->order && in_array(request()->order, ['id', 'title', 'content', 'created_at', 'updated_at', 'category_id']), function($query) {
             $query->orderBy(request()->order, request()->has('desc') ? 'desc' : 'asc');
         })
         // paginating

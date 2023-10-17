@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
+    // soft delete posts
     Route::prefix('/trash/post')->controller(PostDeleteController::class)->group(function () {
         Route::get('/', 'trash');
         Route::post('/recycle-all', 'recycleTrash');
@@ -34,6 +35,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/empty-all', 'emptyTrash');
         Route::post('/empty/{id}', 'emptyOne');
     });
+
+    // bulk actions
+    Route::post('/post/bulk-delete', [PostDeleteController::class, 'bulkDelete']);
+    Route::post('/image/bulk-delete', [ImageController::class, 'bulkDelete']);
+    Route::post('/image/bulk-upload', [ImageController::class, 'bulkStore']);
+
     Route::apiResource('/category', CategoryController::class);
     Route::apiResource('/post', PostController::class);
     Route::apiResource('/tag', TagController::class);
