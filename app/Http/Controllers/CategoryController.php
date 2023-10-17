@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryDetailResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\PostResource;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -37,7 +38,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return new CategoryDetailResource($category);
+        $recent_posts = $category->posts()
+        ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
+        return (new CategoryDetailResource($category))->additional([
+            'recent_posts' => PostResource::collection($recent_posts),
+        ]);
         //
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagDetailResource;
 use App\Http\Resources\TagResource;
@@ -29,7 +30,7 @@ class TagController extends Controller
         $tag = Tag::create([
             'name' => $request->name
         ]);
-        return new TagDetailResource($tag);
+        return (new TagDetailResource($tag));
         //
     }
 
@@ -38,7 +39,11 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        return new TagDetailResource($tag);
+        $recent_posts = $tag->posts()
+        ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
+        return (new TagDetailResource($tag))->additional([
+            'recent_posts' => PostResource::collection($recent_posts),
+        ]);
         //
     }
 
