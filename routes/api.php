@@ -38,7 +38,7 @@ Route::middleware('auth:sanctum')->prefix('/dashboard')->group(function () {
     });
 
     // soft delete posts
-    Route::prefix('/trash/post')->controller(PostDeleteController::class)->group(function () {
+    Route::prefix('/trash')->controller(PostDeleteController::class)->group(function () {
         Route::get('/', 'trash');
         Route::post('/recycle-all', 'recycleTrash');
         Route::post('/recycle/{id}', 'recycleOne');

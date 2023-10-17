@@ -20,7 +20,7 @@ class ImageResource extends JsonResource
             'url' => get_public_url($this->uri),
             'filename' => $this->filename,
             'file size' => get_file_size($this->filesize),
-            'caption' => $this->caption
+            'caption' => $this->caption ?? 'None'
         ];
     }
 }

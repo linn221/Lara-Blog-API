@@ -19,7 +19,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'slug' => $this->slug,
             'title' => $this->title,
-            'content' => Str::limit($this->content, 50),
+            'content' => Str::limit($this->content, 100),
             'category' => $this->category->name,
             'category_id' => $this->category->id,
             'cover_img' => $this->cover_img ?? config('default.post_cover_img'),

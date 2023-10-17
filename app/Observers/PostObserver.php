@@ -10,20 +10,9 @@ class PostObserver
     /**
      * Handle the Post "created" event.
      */
-    private function clearRelatedCache(Post $post)
-    {
-        // clearing cache of category,tags related to post
-        Cache::forget("categories.$post->category_id");
-        $tags = $post->tags;
-        foreach($tags as $tag) {
-            Cache::forget("tags.$tag->id");
-        }
-        //
-
-    }
     public function created(Post $post): void
     {
-        $this->clearRelatedCache($post);
+        clear_post_related_cache($post);
     }
 
     /**
@@ -31,7 +20,13 @@ class PostObserver
      */
     public function updated(Post $post): void
     {
-        $this->clearRelatedCache($post);
+        clear_post_related_cache($post);
+        //
+    }
+
+    public function updating(Post $post): void
+    {
+        clear_post_related_cache($post);
         //
     }
 
@@ -40,7 +35,7 @@ class PostObserver
      */
     public function deleted(Post $post): void
     {
-        $this->clearRelatedCache($post);
+        clear_post_related_cache($post);
         //
     }
 
@@ -49,7 +44,7 @@ class PostObserver
      */
     public function restored(Post $post): void
     {
-        $this->clearRelatedCache($post);
+        clear_post_related_cache($post);
         //
     }
 
@@ -58,7 +53,7 @@ class PostObserver
      */
     public function forceDeleted(Post $post): void
     {
-        $this->clearRelatedCache($post);
+        clear_post_related_cache($post);
         //
     }
 }

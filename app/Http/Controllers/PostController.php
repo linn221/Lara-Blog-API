@@ -17,22 +17,26 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['category', 'tags'])
-        // @feat filter using tags array
-        ->when(request()->cat_id, function ($query) {
-            $query->where('category_id', request()->cat_id);
-        })
-        // search by keyword
-        ->when(request()->kw, function ($query) {
-            $keyword = request()->kw;
-            $query->where('title', 'like', "%$keyword%")
-            ->orWhere('content', 'like', "%$keyword%");
-        })
-        // sorting
-        ->when(request()->order && in_array(request()->order, ['id', 'title', 'content', 'created_at', 'updated_at', 'category_id']), function($query) {
-            $query->orderBy(request()->order, request()->has('desc') ? 'desc' : 'asc');
-        })
-        // paginating
-        ->paginate(15)->withQueryString();
+            // @feat filter using tags array
+            ->when(request()->cat_id, fn ($query) => $query->where('category_id', request()->cat_id))
+
+            // search by keyword
+            ->when(request()->kw, function ($query) {
+                $keyword = request()->kw;
+                $query->where(function ($query) use ($keyword) {
+                    $query->where('title', 'like', "%$keyword%")
+                        ->orWhere('content', 'like', "%$keyword%");
+                });
+            })
+
+            // sorting
+            ->when(request()->order &&
+                in_array(request()->order, ['id', 'title', 'content', 'created_at', 'updated_at', 'category_id']),
+                fn ($query) => $query->orderBy(request()->order, request()->has('desc') ? 'desc' : 'asc'),
+                fn($query) => $query->orderBy('id', 'desc'))
+
+            // paginating
+            ->paginate(15)->withQueryString();
         return PostResource::collection($posts);
         //
     }
@@ -74,6 +78,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        clear_post_related_cache($post);
         $post->update($request->only([
             'title',
             'slug',

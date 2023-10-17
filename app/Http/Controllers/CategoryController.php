@@ -19,9 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         // $categories = Category::withCount('posts')->get();
-        $categories = Cache::remember('categories', Carbon::now()->secondsUntilEndOfDay(), function() {
-            return Category::withCount('posts')->get();
-        });
+        $categories = Cache::remember('categories', cache_ttl(), fn() => Category::withCount('posts')->get());
         return CategoryResource::collection($categories);
         //
     }
@@ -45,10 +43,9 @@ class CategoryController extends Controller
     {
         // $recent_posts = $category->posts()
         // ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
-        $recent_posts = Cache::remember("categories.$category->id", Carbon::now()->secondsUntilEndOfDay(), function() use ($category) {
-            return $category->posts()
-            ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
-        });
+        $recent_posts = Cache::remember("categories.$category->id", cache_ttl(), fn() => $category->posts()->with('category', 'tags')
+            ->limit(10)->latest('updated_at')->get());
+
         return (new CategoryDetailResource($category))->additional([
             'recent_posts' => PostResource::collection($recent_posts),
         ]);

@@ -23,7 +23,7 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|min:4|max:255',
-            'slug' => 'required|min:4|max:50',
+            'slug' => 'required|unique:posts,slug,' . $this->post->id .'|min:4|max:50',
             'content' => 'required',
             'cover_img' => 'required|min:10|max:255',
             'category_id' => 'required|exists:categories,id'

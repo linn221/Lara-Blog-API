@@ -8,6 +8,7 @@ use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +19,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::all();
+        // $images = Image::all();
+        $images = Cache::rememberForever('images', fn() => Image::all());
         return ImageResource::collection($images);
         //
     }
@@ -38,6 +40,7 @@ class ImageController extends Controller
         $image->filename = $file->getClientOriginalName();
         $image->caption = $request->caption;
         $image->save();
+        Cache::forget('images');
         return new ImageResource($image);
         //
     }
@@ -48,6 +51,7 @@ class ImageController extends Controller
     {
         Storage::delete($image->uri);
         $image->delete();
+        Cache::forget('images');
         return response()->noContent();
         //
     }
@@ -57,7 +61,7 @@ class ImageController extends Controller
         // @fix limit file size
         $request->validate([
             'image' => 'required|array',
-            'image.*' => 'file|mimetypes:image/jpeg,image/png,image/jpg',
+            'image.*' => 'file|mimetypes:image/jpeg,image/png,image/jpg|min:20|max:5000',
         ]);
         $files = $request->file('image');
         $storedImages = collect();
@@ -71,6 +75,7 @@ class ImageController extends Controller
             $image->save();
             $storedImages->add($image);
         }
+        Cache::forget('images');
         return ImageResource::collection($storedImages);
     }
 
@@ -87,6 +92,7 @@ class ImageController extends Controller
             Storage::delete($image->uri);
             $image->delete();
         }
+        Cache::forget('images');
         return response()->noContent();
     }
 }

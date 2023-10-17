@@ -20,9 +20,7 @@ class TagController extends Controller
     public function index()
     {
         // $tags = Tag::withCount('posts')->get();
-        $tags = Cache::remember('tags', Carbon::now()->secondsUntilEndOfDay(),function () {
-            return Tag::withCount('posts')->get();
-        });
+        $tags = Cache::remember('tags', cache_ttl(),fn () => Tag::withCount('posts')->get());
         return TagResource::collection($tags);
         //
     }
@@ -46,10 +44,10 @@ class TagController extends Controller
     {
         // $recent_posts = $tag->posts()
         // ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
-        $recent_posts = Cache::remember("tags.$tag->id", Carbon::now()->secondsUntilEndOfDay(),function () use ($tag) {
-            return $tag->posts()
-                ->with('category', 'tags')->latest()->offset(0)->limit(10)->get();
-        });
+        $recent_posts = Cache::remember("tags.$tag->id", cache_ttl(),fn () => $tag->posts()
+                ->with('category', 'tags')
+                ->latest()->offset(0)->limit(10)->get());
+
         return (new TagDetailResource($tag))->additional([
             'recent_posts' => PostResource::collection($recent_posts),
         ]);

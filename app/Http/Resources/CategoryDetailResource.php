@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,7 @@ class CategoryDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'posts_count' => $this->posts->count()
+            'posts_count' => $this->posts()->count()
         ];
     }
 }
