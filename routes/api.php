@@ -6,6 +6,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostDeleteController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // user setting
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/user', 'showProfile');
+        Route::patch('/user', 'updateProfile');
+        Route::post('/change-password', 'changePassword');
+    });
 
     // soft delete posts
     Route::prefix('/trash/post')->controller(PostDeleteController::class)->group(function () {

@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
+            'bio' => 'Blogger who loves writing',
+            'information' => "facebook: <facebook url>\ninstagram: <url>",
         ]);
 
         $this->call([
