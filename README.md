@@ -6,7 +6,7 @@
 Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 ```
 <br>
-<br>
+
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
 - [1. Public](#1-public)
@@ -67,7 +67,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/posts?cat_id=1&order=updated_at&kw=lore
+http://localhost:8000/api/posts?cat_id=1&order=updated_at&kw=lore
 ```
 
 <!-- TOC --><a name="12-read-post"></a>
@@ -76,7 +76,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/post/hello-world
+http://localhost:8000/api/post/hello-world
 ```
 
 <!-- TOC --><a name="13-fetch-tags"></a>
@@ -85,7 +85,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/tags
+http://localhost:8000/api/tags
 ```
 
 <!-- TOC --><a name="14-show-tag"></a>
@@ -94,7 +94,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/tag/flutter
+http://localhost:8000/api/tag/flutter
 ```
 
 <!-- TOC --><a name="15-fetch-categories"></a>
@@ -103,7 +103,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/categories
+http://localhost:8000/api/categories
 ```
 
 <!-- TOC --><a name="16-show-category"></a>
@@ -112,7 +112,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **GET**
 ```http
-{{public}}/category/frontend
+http://localhost:8000/api/category/frontend
 ```
 
 ----------------------------
@@ -126,7 +126,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **POST**
 ```http
-{{url}}/logout
+http://localhost:8000/api/dashboard/logout
 ```
 
 <!-- TOC --><a name="212-change-password"></a>
@@ -135,7 +135,7 @@ Authorization: Bearer 2|uxWwSBeQqRFCNY9GKHOGfaYHpV8EiGOPWJVm8YCm
 
 **POST**
 ```http
-{{url}}/change-password
+http://localhost:8000/api/dashboard/change-password
 ```
 [*formdata*]
 
@@ -151,7 +151,7 @@ new_password | text | helloworld
 
 **POST**
 ```http
-{{url}}/change-password
+http://localhost:8000/api/dashboard/change-password
 ```
 [*formdata*]
 
@@ -167,7 +167,7 @@ old_password | text | helloworld
 
 **GET**
 ```http
-{{url}}/user
+http://localhost:8000/api/dashboard/user
 ```
 
 <!-- TOC --><a name="215-update-profile"></a>
@@ -176,7 +176,7 @@ old_password | text | helloworld
 
 **PATCH**
 ```http
-{{url}}/user
+http://localhost:8000/api/dashboard/user
 ```
 [*urlencoded*]
 
@@ -196,7 +196,7 @@ information | text | i love coffee
 
 **GET**
 ```http
-{{url}}/category
+http://localhost:8000/api/dashboard/category
 ```
 
 <!-- TOC --><a name="222-create-category"></a>
@@ -205,7 +205,7 @@ information | text | i love coffee
 
 **POST**
 ```http
-{{url}}/category
+http://localhost:8000/api/dashboard/category
 ```
 [*formdata*]
 
@@ -220,7 +220,7 @@ name | text | laravel
 
 **PUT**
 ```http
-{{url}}/category/3
+http://localhost:8000/api/dashboard/category/3
 ```
 [*urlencoded*]
 
@@ -235,7 +235,7 @@ name | text | ruby on rails
 
 **GET**
 ```http
-{{url}}/category/3
+http://localhost:8000/api/dashboard/category/3
 ```
 
 <!-- TOC --><a name="225-delete-category"></a>
@@ -244,7 +244,7 @@ name | text | ruby on rails
 
 **DELETE**
 ```http
-{{url}}/category/1
+http://localhost:8000/api/dashboard/category/1
 ```
 
 ----------------------------
@@ -256,7 +256,7 @@ name | text | ruby on rails
 
 **POST**
 ```http
-{{url}}/tag
+http://localhost:8000/api/dashboard/tag
 ```
 [*formdata*]
 
@@ -271,7 +271,7 @@ name | text | eloquentt
 
 **PUT**
 ```http
-{{url}}/tag/3
+http://localhost:8000/api/dashboard/tag/3
 ```
 [*urlencoded*]
 
@@ -286,7 +286,7 @@ name | text | collection
 
 **GET**
 ```http
-{{url}}/tag/1
+http://localhost:8000/api/dashboard/tag/1
 ```
 
 <!-- TOC --><a name="234-list-tags"></a>
@@ -295,7 +295,7 @@ name | text | collection
 
 **GET**
 ```http
-{{url}}/tag
+http://localhost:8000/api/dashboard/tag
 ```
 
 <!-- TOC --><a name="235-delete-tag"></a>
@@ -304,7 +304,7 @@ name | text | collection
 
 **DELETE**
 ```http
-{{url}}/tag/1
+http://localhost:8000/api/dashboard/tag/1
 ```
 
 ----------------------------
@@ -318,7 +318,7 @@ name | text | collection
 
 **GET**
 ```http
-{{url}}/trash
+http://localhost:8000/api/dashboard/trash
 ```
 
 <!-- TOC --><a name="2412-empty-trash"></a>
@@ -327,7 +327,7 @@ name | text | collection
 
 **POST**
 ```http
-{{url}}/trash/empty-all
+http://localhost:8000/api/dashboard/trash/empty-all
 ```
 
 <!-- TOC --><a name="2413-recycle-trash"></a>
@@ -336,7 +336,7 @@ name | text | collection
 
 **POST**
 ```http
-{{url}}/trash/recycle-all
+http://localhost:8000/api/dashboard/trash/recycle-all
 ```
 
 <!-- TOC --><a name="2414-restore-post"></a>
@@ -345,7 +345,7 @@ name | text | collection
 
 **POST**
 ```http
-{{url}}/trash/recycle/14
+http://localhost:8000/api/dashboard/trash/recycle/14
 ```
 
 <!-- TOC --><a name="2415-force-delete-post"></a>
@@ -354,7 +354,7 @@ name | text | collection
 
 **POST**
 ```http
-{{url}}/trash/post/empty/14
+http://localhost:8000/api/dashboard/trash/post/empty/14
 ```
 
 ----------------------------
@@ -364,7 +364,7 @@ name | text | collection
 
 **POST**
 ```http
-{{url}}/post
+http://localhost:8000/api/dashboard/post
 ```
 [*formdata*]
 
@@ -385,7 +385,7 @@ cover_img   | text | im the url string of the actual image file
 
 **PUT**
 ```http
-{{url}}/post/1
+http://localhost:8000/api/dashboard/post/1
 ```
 [*urlencoded*]
 
@@ -406,7 +406,7 @@ cover_img   | text | im the updated one, NOT optional
 
 **GET**
 ```http
-{{url}}/post/10
+http://localhost:8000/api/dashboard/post/10
 ```
 
 <!-- TOC --><a name="245-list-posts"></a>
@@ -415,7 +415,7 @@ cover_img   | text | im the updated one, NOT optional
 
 **GET**
 ```http
-{{url}}/post?kw=lore
+http://localhost:8000/api/dashboard/post?kw=lore
 ```
 
 <!-- TOC --><a name="246-delete-post"></a>
@@ -424,7 +424,7 @@ cover_img   | text | im the updated one, NOT optional
 
 **DELETE**
 ```http
-{{url}}/post/14
+http://localhost:8000/api/dashboard/post/14
 ```
 
 <!-- TOC --><a name="247-bulk-delete"></a>
@@ -433,7 +433,7 @@ cover_img   | text | im the updated one, NOT optional
 
 **POST**
 ```http
-{{url}}/post/bulk-delete
+http://localhost:8000/api/dashboard/post/bulk-delete
 ```
 [*formdata*]
 
@@ -452,7 +452,7 @@ ids[] | text | 4
 
 **POST**
 ```http
-{{url}}/image
+http://localhost:8000/api/dashboard/image
 ```
 [*formdata*]
 
@@ -468,7 +468,7 @@ caption | text | i am a boy
 
 **GET**
 ```http
-{{url}}/image
+http://localhost:8000/api/dashboard/image
 ```
 
 <!-- TOC --><a name="253-delete-image"></a>
@@ -477,7 +477,7 @@ caption | text | i am a boy
 
 **DELETE**
 ```http
-{{url}}/image/4
+http://localhost:8000/api/dashboard/image/4
 ```
 
 <!-- TOC --><a name="254-multiple-upload"></a>
@@ -488,7 +488,7 @@ upload mutliple images, no caption support\
 \
 **POST**
 ```http
-{{url}}/image/bulk-upload
+http://localhost:8000/api/dashboard/image/bulk-upload
 ```
 [*formdata*]
 
@@ -503,7 +503,7 @@ image[] | file |
 
 **POST**
 ```http
-{{url}}/image/bulk-delete
+http://localhost:8000/api/dashboard/image/bulk-delete
 ```
 [*formdata*]
 
@@ -520,7 +520,7 @@ ids[] | text | 8
 
 **POST**
 ```http
-{{url}}/login
+http://localhost:8000/api/dashboard/login
 ```
 [*formdata*]
 
